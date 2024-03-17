@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from usergestion.abrir_datos import abrir_datos_album,abrir_datos_users_artists,abrir_datos_users_listeners
-from usergestion.abrir_datos import abrir_datos_playlists, abrir_datos_album, artistas_completo_album,link_playlists,guardar_datos
+from usergestion.abrir_datos import abrir_datos_playlists, abrir_datos_album, artistas_completo_album,link_playlists,guardar_datos,guardar_users
 from usergestion.usermain import user_menu
 from Gestion_musical.top_functions import top_albums_list
 from Gestion_musical.menu_estadisticas import estaditica_menu
@@ -20,13 +20,14 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
             albums=abrir_datos_album() #la explicacion de como funcionan todas estas funciones de abrir datos estan en abrir_datos.py
             listeners=abrir_datos_users_listeners()
             playlists=abrir_datos_playlists(albums)
-            link_playlists(playlists,listeners,albums)
+            link_playlists(playlists,listeners,albums,artists)
             albums=top_albums_list(albums)
+            
              #esto es para que se muestre en los atributos de las playlists el nombre del creador de esta
             #los datos estan dentro del loop para que se actualicen si se cambio algo en la gestion del perfil
              #esto ordena la lista de albums por los que tienen mas streams
             for i in artists:
-                i.suma_stream
+                i.reproducciones_suma
 
             if type(user)==int:
                  print()
@@ -40,6 +41,7 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                 for i in listeners:
                      if i.name==user.name: #esto es para vincular el user y las listas con el quie se esocge en la gestion de perfil
                          user=i
+                     
                 for i in artists:
                      if i.name==user.name:
                          user=i
@@ -63,14 +65,13 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                         if x==2:
                     
                             user.crear_playlist(albums)
+                            guardar_datos(playlists,artists,listeners,albums)
                             us=True
                         
                         if x==1:
-                            print(user.streams)
                             ReproduceSong(user,playlists,artists,albums,listeners)
-                            print(user.streams)
-                            print(user.l_albums)
-                            guardar_datos(playlists,artists,listeners,albums)
+                           
+                            guardar_users(listeners,artists)
                             
                             
                             us=True
@@ -84,6 +85,7 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                             estaditica_menu()
                         if x==5:
                             print("dato3",user.streams)
+                            
                             guardar_datos(playlists,artists,listeners,albums)
                             return
                             
@@ -122,6 +124,7 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                             estaditica_menu()
                         if y==4:
                             guardar_datos(playlists,artists,listeners,albums)
+                            print("Cierre de Metrotify")
                             return
                 
                     

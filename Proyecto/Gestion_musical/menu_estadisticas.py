@@ -14,7 +14,7 @@ def estaditica_menu():
     albums=abrir_datos_album() #la explicacion de como funcionan todas estas funciones de abrir datos estan en abrir_datos.py
     listeners=abrir_datos_users_listeners()
     playlists=abrir_datos_playlists(albums)
-    link_playlists(playlists,listeners,albums)
+    link_playlists(playlists,listeners,albums,artists)
 
     for i in albums:
         i.suma_streams() #esta funcion es para vincular las reproducciones de las canciones a las reproducciones de los albums
@@ -30,6 +30,7 @@ def estaditica_menu():
 
     artists=top_artists_list(artists) #esto es para organizar los artistas por sus reproducciones
     listeners=top_listeners_list(listeners)
+    
     us=True
     user=0
     si=True
@@ -86,5 +87,3 @@ def estaditica_menu():
             return
         else:
             print("Esa no es una de las opciones numericas")
-
-estaditica_menu()

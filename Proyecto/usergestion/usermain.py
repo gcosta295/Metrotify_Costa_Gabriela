@@ -28,7 +28,7 @@ def user_menu(real): #esta funcion es para realizar un menu de todas las opcione
     for i in artists: #suma las reproducciones de todos los albums del artista
         i.reproducciones_suma()
     
-    link_playlists(playlists,listeners,albums)#esto es para que se muestre en los atributos de las playlists el nombre del creador de esta
+    link_playlists(playlists,listeners,albums,artists)#esto es para que se muestre en los atributos de las playlists el nombre del creador de esta
     
     if real==None: #este if es para que se guarde los datos entre el main menu y la gestion del usuario
         user=0
@@ -121,4 +121,3 @@ def user_menu(real): #esta funcion es para realizar un menu de todas las opcione
 
     return user
 
-user_menu(None)

@@ -50,12 +50,13 @@ def downloadPlaylists(playl,albums): #esta es una funcion para abrir las playlis
                 tracks=[]
     return playlists
 
-def link_playlists(playlists,users,albums):
+def link_playlists(playlists,users,albums,artists): #esta es una funcion que convierte todos los id del user en sus respectivos objetos
     playl=[]
     l_songs=[]
     l_albums=[]
     l_songs=[]
     l_playlists=[]
+    l_artists=[]
     for a in users: 
         for i in playlists:
         
@@ -77,11 +78,19 @@ def link_playlists(playlists,users,albums):
                 if u==i.ide:
                     l_albums.append(i)
 
+        for j in a.l_artists:
+            for i in artists:
+                if i.idd==j:
+                        l_artists.append(i)
+                       
+
 
         a.l_songs=l_songs
         l_songs=[]
         a.l_albums=l_albums
         l_albums=[]
+        a.l_artists=l_artists
+        l_artists=[]
 
  
 
@@ -114,6 +123,7 @@ def guardar_users(liste,arti): #esta es una funcion para guardar los datos de lo
         elemento=str({"id":i.idd,"name":i.name,"email":i.email,"type":i.type_user,"username":i.username,"l_artists":l_artists,"l_playlists":l_playlists,"l_albums":l_albums,"l_songs":l_songs,"playlists":playl,"streams":i.streams})
         
         file.write(elemento +"\n")
+
     for i in arti:
         album=[]
         top=[]

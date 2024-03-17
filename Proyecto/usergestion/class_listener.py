@@ -52,9 +52,7 @@ class Listener(User):
         if x==1:
            pass 
 
-    def reproducir_dar_like(self,playlists,artists,albums): #al ser una funcion extremadamente larga ya que permite reproducir y dar likes esta en otra archivo
-        ReproduceSong(self,playlists,artists,albums)
-
+    
     def crear_playlist(self,albums):
         idd=str(datetime.now())
         play_name=input("Nombre de la Playlist--->")
