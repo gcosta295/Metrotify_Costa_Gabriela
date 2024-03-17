@@ -99,8 +99,8 @@ def link_playlists(playlists,users,albums,artists): #esta es una funcion que con
 
 
 def guardar_users(liste,arti): #esta es una funcion para guardar los datos de los listeners y artists cuando se cierra el programa en un .txt file
-    open('datos//users.txt', 'w').close()
-    file = open('datos//users.txt', 'a',encoding='utf-8')
+    open('Proyecto//datos//users.txt', 'w').close()
+    file = open('Proyecto//datos//users.txt', 'a',encoding='utf-8')
     for i in liste:
         playl=[]
         l_songs=[]
@@ -138,7 +138,7 @@ def guardar_users(liste,arti): #esta es una funcion para guardar los datos de lo
 
 def abrir_users_modificados(): #esta funcion solo aplica en el caso de que exista el txt file, de otra manera se tiene que inicialiozar el api
     lista=[]
-    file = open('datos//users.txt', 'r', encoding='utf-8')
+    file = open('Proyecto//datos//users.txt', 'r', encoding='utf-8')
     counter=0
     while True:
         counter+=1
@@ -182,8 +182,8 @@ def link_albums(artists,albums): #esta es la funcion que se usa para vincular lo
 
 
 def guardar_albums(lista): #esta es una funcion para guardar los datos de los listeners y artists cuando se cierra el programa en un .txt file
-    open('datos//albums.txt', 'w').close()
-    file = open('datos//albums.txt', 'a',encoding='utf-8')
+    open('Proyecto//datos//albums.txt', 'w').close()
+    file = open('Proyecto//datos//albums.txt', 'a',encoding='utf-8')
     for i in lista:
         tracklist=[]
         for j in i.tracklist:
@@ -196,7 +196,7 @@ def guardar_albums(lista): #esta es una funcion para guardar los datos de los li
 
 def check_txt_files(): #esta funcion es para revisar si se tiene que empezar el programa con los datos de la api o si ya se ha inicializado antes
     
-    file_path = 'datos\\users.txt'
+    file_path = 'Proyecto\\datos\\users.txt'
 
     try: 
         # get the size of file
@@ -235,7 +235,7 @@ def downloadAlbums(x,l): #esta funcion es para cargar los datos de la api en una
 
 def abrir_albums_modificados(): #esta es la funcion para abrir los datos del txt si este existe
     lista=[]
-    file = open('datos//albums.txt', 'r',encoding='utf-8')
+    file = open('Proyecto//datos//albums.txt', 'r',encoding='utf-8')
     counter=0
     while True:
         counter+=1
@@ -253,7 +253,7 @@ def artistas_completo_album(artistas,albums): #esta funcion permite vincular los
 
 def abrir_playlists_modificados(): #esta es la funcion para abrir los datos del txt si este existe
     lista=[]
-    file = open('datos//playlists.txt', 'r',encoding='cp437')
+    file = open('Proyecto//datos//playlists.txt', 'r',encoding='cp437')
     counter=0
     while True:
         counter+=1
@@ -302,8 +302,8 @@ def abrir_datos_album():
 
 
 def guardar_playlists(lista): #esta es la funcion para guardar los datos de la playlist en la api
-    open('datos//playlists.txt', 'w').close()
-    file = open('datos//playlists.txt', 'a',encoding='utf-8')
+    open('Proyecto//datos//playlists.txt', 'w').close()
+    file = open('Proyecto//datos//playlists.txt', 'a',encoding='utf-8')
     for i in lista:
         tracklist=[]
         for j in i.tracklist:
