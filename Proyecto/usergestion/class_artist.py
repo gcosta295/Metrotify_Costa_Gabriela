@@ -43,8 +43,10 @@ class Artist(User):
         return albums
     
     def reproducciones_suma(self): #suma los streams de todos sus albums
+        streams=0
         for i in self.albums:
-            self.reproducciones+=i.streams
+            streams+=i.streams
+        self.reproducciones=streams
         return ""
     def show_top_10(self): #muestra las top 10 canciones del artisa
         tops=[]

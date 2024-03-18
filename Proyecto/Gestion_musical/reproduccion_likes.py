@@ -114,9 +114,10 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
                                                 print(f"{m.name} ha sido reproducida")
                                                 m.reproducciones+=1
                                                 user.streams+=1
+                                                guardar_albums(albums)
                                                 darlikeSong(m,user)
                                                 darlikeArtist(user,artis)
-                                                guardar_albums(albums)
+                                                
 
                                                 return user,playlists,albums,artists
                                             
