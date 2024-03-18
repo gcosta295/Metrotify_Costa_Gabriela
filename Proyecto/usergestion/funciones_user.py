@@ -10,12 +10,6 @@ from usergestion.funciones_api import *
 
 
 
-def viewUser(x): #esto permite visualizar todos los usuarios de artista o listeners
-    for i in x:
-      i.show_attr()
-
-
-
 def searchName(listeners,artists): #esta funcion es para la busqueda de los datos de un usuario por su nombre
     r=True
     while r==True: #esta parte es apra poder garfabtizar que se esta buscando al usuario en la base de datos correcta
@@ -51,32 +45,42 @@ def searchName(listeners,artists): #esta funcion es para la busqueda de los dato
                 Nombre que desea buscar 
                 (si desea salir escriba 1)----->""")
         y=input()
-        for i in n:
-            x=i.name 
-            if x==y:
-                if i.type_user=="listener":
-                   print(i.show_attr()) #esto muestra los datos del perfil que buscamos
-                else: 
-                    print(i.show_attr())
-                    print("""Albums:""")
-                    for l in i.albums:
-                        print("--------------------")
-                        print(f"""
-             {l.name}""")
-                        for k in l.tracklist:
-                            print(f"""--{k.name}""")
-                    print("------------------")
-                    print(i.show_top_10())
-    
-        
         if y=="1":
             break
                 
+       
+        else:
+            for i in n:
+                x=i.name 
+                if x==y:
+                    if i.type_user=="listener":
+                        print(i.show_attr()) #esto muestra los datos del perfil que buscamos
+                        print(i.show_likes(i.l_albums,i.l_songs))
+                        print(i.show_playlists(i.playlists))
+                    
+                    else: 
+                        print(i.show_attr()) #llama a los metodos de listener o artist
+                        print("""Albums:""")
+                        for l in i.albums:
+                            print("--------------------")
+                            print(f"""
+                {l.name}""")
+                            for k in l.tracklist:
+                                print(f"""--{k.name}""")
+                        print("------------------")
+                        print(i.show_top_10())
+            
+
         print("No tenemos ese nombre en nuestra base de datos,")
-        print("Revise que este bien escrito")
+        print("Revise que este bien escrito, los artistas tienen un espacio despues de su nombre")
+        
+    
+        
+        
     return
 
 
+#todas las funciones que siguen son las necesarias para crear un nuevo usuario
 
 def create_user_name(m): #esta es parte de las funciones utilizadas para crear un nuevo objeto de clase User \
     x=True
@@ -254,29 +258,5 @@ def ingresar_user(listeners,artists): #esta funcion es para ingresa r a una de l
             y=True
     
 
-def borrar_cuenta(cuenta):
-    if cuenta.type_user=="listener":
-        m=listeners
-    else:
-        m=artists
-    x=True
-    while x==True:
-        y=input("""
-    Esta usted seguro? Despues tendra que iniciar sesion en otra cuenta 
-    o registrarse otra vez para usar las funciones de Metrotify
-        1. Si
-        2. No ------>""")
-        if not y.isnumeric():
-            print("Tiene que poner los numeros")
-        else:
-            y=int(y)
-            if y==1:
-                m.remove(cuenta)
-                break
-            if y==2:
-                break
-            
-        
 
 
-# New_user(listeners,artists)

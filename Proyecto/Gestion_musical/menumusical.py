@@ -9,7 +9,7 @@ from Gestion_musical.top_functions import top_albums_list
 from Gestion_musical.menu_estadisticas import estaditica_menu
 from Gestion_musical.reproduccion_likes import ReproduceSong
 
-def music_menu(): #esta funcion es para realizar un menu de todas las opciones del modulo "Gestion de Perfil"
+def music_menu(): #esta funcion es para realizar un menu de todas las opciones del menu principal
     
     us=True
     user=0
@@ -39,13 +39,14 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                 
             else:
                 for i in listeners:
-                     if i.name==user.name: #esto es para vincular el user y las listas con el quie se esocge en la gestion de perfil
+                     if i.name==user.name: #esto es para vincular el user y las listas con el 
+                                    #ue se esoge en la gestion de perfil, sino los cambios no se ven reflejados en las bases de datos
                          user=i
                      
                 for i in artists:
                      if i.name==user.name:
                          user=i
-                if user.type_user=="listener":
+                if user.type_user=="listener": #muestra dos menu dependiendo de que es el user que inicio sesion
                     print("""
 
                 
@@ -53,7 +54,8 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                 2. Crear Playlist
                 3. Gestion Perfil
                 4. Ver estadisticas
-                5. Cerrar Programa """)
+                5. Ver Likes
+                6. Cerrar Programa """)
                     x=input()
 
                     if not x.isnumeric():
@@ -64,34 +66,34 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
                         us=True
                         if x==2:
                     
-                            user.crear_playlist(albums)
+                            playlists=user.crear_playlist(albums,playlists) #siempre se tiene que volver a especificar que se devuelve porque si no no se guardan los cambios en las bases de datos principales
                             guardar_datos(playlists,artists,listeners,albums)
                             us=True
                         
-                        if x==1:
-                            ReproduceSong(user,playlists,artists,albums,listeners)
-                           
-                            guardar_users(listeners,artists)
+                        elif x==1:
+                            ReproduceSong(user,playlists,artists,albums,listeners) #esta es una funcion para reproducir las canciones, no la pude meter dentro del listener porque no se me guardaban los cambios
+                            guardar_users(listeners,artists) #siempre se pone guardar_users() para que cuando vuelva al loop del menu abra las listas con los cambios realizados
                             
                             
                             us=True
                             
                             
-                        if x==3:
+                        elif x==3:
                             user_menu(user) #el user es necesario entre parentesis para que se guarde el user entre la gestion de perfil y el menu principal
                         
-                        if x==4:
+                        elif x==4:
                             guardar_datos(playlists,artists,listeners,albums)
                             estaditica_menu()
-                        if x==5:
-                            print("dato3",user.streams)
-                            
+                        elif x==5:
+                            user.show_all_likes(user.l_albums,user.l_songs,user.l_artists,user.l_playlists)
+                        elif x==6:
                             guardar_datos(playlists,artists,listeners,albums)
                             return
-                            
+                        else:
+                            print("No es una de las opciones")
                         
                         
-                elif user.type_user=="musician":
+                elif user.type_user=="musician": #muestra dos menu dependiendo de que es el user que inicio sesion
                     print("""
 
                 
@@ -110,23 +112,25 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
 
                         if y==1:
                     
-                            user.crear_album()
+                            albums=user.crear_album(albums)
+                            guardar_datos(playlists,artists,listeners,albums)
                             us=True
                 
-                        if y==2:
-                           
-                            user.reproducir_dar_like(playlists,artists,albums)
+                        elif y==2:
+                            guardar_datos(playlists,artists,listeners,albums)
+                            user_menu(user)
                             
                             us=True
                             guardar_datos(playlists,artists,listeners,albums)
-                        if y==3:
+                        elif y==3:
                             guardar_datos(playlists,artists,listeners,albums)
                             estaditica_menu()
-                        if y==4:
+                        elif y==4:
                             guardar_datos(playlists,artists,listeners,albums)
                             print("Cierre de Metrotify")
                             return
-                
+                        else:
+                            print("No es una de las opciones")
                     
                 
                 
@@ -135,5 +139,4 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
 
     return user
    
-
 music_menu()

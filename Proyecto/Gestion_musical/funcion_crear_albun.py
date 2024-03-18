@@ -22,7 +22,7 @@ def validar_fecha(): #esta es una funcion para validar las fechas de los albunes
             print("No es un formato valido")
     print("Fecha Valida")
 
-def tracklist():
+def tracklist(): #permite crear varias canciones y juntarlas en la misma lista
     songs=[]
     x=True
     while x==True:
@@ -43,8 +43,8 @@ def tracklist():
             print("input no valido")
     return songs
 
-def validar_link(link):
-    regex = re.compile(
+def validar_link(link): 
+    regex = re.compile( #todos estas lineas es para verificar que lo que se esta ingresando de verdad es un link
             r'^(?:http|ftp)s?://' # http:// or https://
             r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
             r'localhost|' #localhost...
@@ -54,12 +54,12 @@ def validar_link(link):
     verdad=(re.match(regex, link) is not None) 
     return verdad
 
-def crear_song():
+def crear_song(): #esta es la funcion para crear una cancion individual
     
     name=input('Nombre de la cancion ---->')
     idd=str(name)+"nuevo"
     duration=validar_duracion()
-    likes=None
+    likes=0
     valido="si"
     while valido=="si":
         link=input("Ingrese el link de la cancion")

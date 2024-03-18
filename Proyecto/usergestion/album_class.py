@@ -25,7 +25,7 @@ class Album(object):
               Tracklist: {self.tracklist}
               Likes: {self.likes}""")
         
-    def suma_streams(self):
+    def suma_streams(self): #funcion para sumar los streams de todas sus canciones
         for i in self.tracklist:
             self.streams+=i.reproducciones
 

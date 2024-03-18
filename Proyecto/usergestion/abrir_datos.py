@@ -1,3 +1,5 @@
+#estas funciones son las encargadas de agarrar los datos de las api o los archivos .txt y transformarlos en objetos
+#luego esos objetos son agregados a las listas que devuelve cada funcion
 
 import sys
 import os
@@ -41,7 +43,7 @@ def downloadPlaylists(playl,albums): #esta es una funcion para abrir las playlis
             if k=="tracks":
                 tracks=[]
                 for l in v:
-                    for j in albums:
+                    for j in albums: #se necesita que ya se hayan descargado los albums primero para poder agregar los object Song a las playlists
                         for m in j.tracklist:
                           if m.idd==l:
                              tracks.append(m)
@@ -53,7 +55,7 @@ def downloadPlaylists(playl,albums): #esta es una funcion para abrir las playlis
 def link_playlists(playlists,users,albums,artists): #esta es una funcion que convierte todos los id del user en sus respectivos objetos
     playl=[]
     l_songs=[]
-    l_albums=[]
+    l_albums=[] #es necesario para que los user tengan los objetos de sus likes vinculados
     l_songs=[]
     l_playlists=[]
     l_artists=[]
@@ -110,7 +112,7 @@ def guardar_users(liste,arti): #esta es una funcion para guardar los datos de lo
         if i.playlists==None:
             playl=None
         else:
-            for j in i.playlists:
+            for j in i.playlists: #se usan todos los for para iterar todos los objetos dentro de los atributos de los users
                 playl.append(j.idd)
             for c in i.l_songs:
                 l_songs.append(c.idd)
@@ -183,7 +185,7 @@ def link_albums(artists,albums): #esta es la funcion que se usa para vincular lo
 
 def guardar_albums(lista): #esta es una funcion para guardar los datos de los listeners y artists cuando se cierra el programa en un .txt file
     open('Proyecto\\datos\\albums.txt', 'w').close()
-    file = open('Proyecto\\datos\\albums.txt', 'a',encoding='utf-8')
+    file = open('Proyecto\\datos\\albums.txt', 'a',encoding='utf-8') #este archivo se crea si no exioste y si existe se sobreescribe
     for i in lista:
         tracklist=[]
         for j in i.tracklist:
@@ -313,7 +315,7 @@ def guardar_playlists(lista): #esta es la funcion para guardar los datos de la p
        
     file.close()
 
-def downloadPLaylists_modificadas(x,albums):
+def downloadPLaylists_modificadas(x,albums): #esta funcion es para descargar los datos de las playlists en el ..txt
     playlists=[]
     tracks=[]
     for i in x:
@@ -331,7 +333,7 @@ def downloadPLaylists_modificadas(x,albums):
                 tracks=[]
     return playlists
 
-def abrir_datos_playlists(albums):
+def abrir_datos_playlists(albums): #abre los datos de las playlist api si no existe el txt y los datos del txt si existe el text
     if check_txt_files()==True:
         playlists=downloadPlaylists(abrir_playlist(),albums)
    
@@ -339,7 +341,7 @@ def abrir_datos_playlists(albums):
         playlists=downloadPLaylists_modificadas(abrir_playlists_modificados(),albums)
     return playlists
 
-def guardar_datos(playlists,artists,listeners,albums):
+def guardar_datos(playlists,artists,listeners,albums): #esta es la funcion conjunta del final que permite guardar todo al cerrar abrir o ca,biar de modulo en el programa
     guardar_playlists(playlists)
     guardar_users(listeners,artists)
     guardar_albums(albums)

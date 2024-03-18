@@ -2,7 +2,7 @@
 #el codigo fue programado para tener que reproducir una cancion para poder darle me gusta
 # de forma que si buscas un album tendras la opcion de darle me gusta a la cancion que reproduciste y al album
 #es la misma funcionalidad si buscas por artista o por playlist
-#esta es la funcion que va en el metodo de la clas Listener, esta aca por comodidad al ser tan larga 
+
 from usergestion.abrir_datos import guardar_albums
 def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es para la busqueda de los datos de un usuario por su nombre
     r=True
@@ -17,7 +17,7 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
             4. Playlist
             5. Salir ---->""")
         
-        if j.isnumeric():
+        if j.isnumeric(): #esto es para verificar que estes agarrando una de las opciones
             if j=="1":
                 n=artists
                 r=False
@@ -63,7 +63,7 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
                                 
                                 darlikeSong(k,user)
                                 darLikealbum(user,albu)
-                                guardar_albums(albums)
+                                guardar_albums(albums) #es necesario guardarlo para que se quede en la base de datos los cambios en los streams
                                 si=False
                                 return user,playlists,artists,albums
                         
@@ -112,14 +112,12 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
                                         for m in k.tracklist:
                                             if m.name==x:
                                                 print(f"{m.name} ha sido reproducida")
-                                                # for i in artists:
-                                                #      if k.artist_id==i.idd:
-                                                #         autor=i
                                                 m.reproducciones+=1
                                                 user.streams+=1
                                                 darlikeSong(m,user)
                                                 darlikeArtist(user,artis)
                                                 guardar_albums(albums)
+
                                                 return user,playlists,albums,artists
                                             
                                     print("Cancion no encontrada")
@@ -140,8 +138,6 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
                                 k.reproducciones+=1
                                 user.streams+=1
                                 darlikeSong(k,user)
-                                si=False
-                                print(k.reproducciones)
                                 guardar_albums(albums)
                                 return user,playlists,albums,artists
                             
@@ -185,6 +181,10 @@ def ReproduceSong(user,playlists,artists,albums,listeners): #esta funcion es par
         
     if j=="5":
         return user,playlists,albums,artists
+    
+
+# las funciones de dar like trabajan de forma de que si el objeto ya fue likeado por el user se borra de la lista de likes del user
+# pero si no esta ya en la lista se agrega
     
 def darlikeSong(song,user):
     si=True

@@ -5,8 +5,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from usergestion.abrir_datos import abrir_datos_album,abrir_datos_users_artists,abrir_datos_users_listeners
 from usergestion.abrir_datos import abrir_datos_playlists, abrir_datos_album, artistas_completo_album,link_playlists
 from Gestion_musical.top_functions import top_albums_list,top_artists_list,top_songs_list,top_listeners_list,graficas1,graficas2
-
-#este archivo incluye el bono de mostrar las graficas
+from usergestion.abrir_datos import guardar_datos
+#este archivo incluye el bono de mostrar las graficas !!!!
 #estas son las funciones grafica1 y grafica2 que se realizan al pedir las estadisticas de cada top 5
 
 def estaditica_menu(): 
@@ -20,15 +20,14 @@ def estaditica_menu():
         i.suma_streams() #esta funcion es para vincular las reproducciones de las canciones a las reproducciones de los albums
     
     albums=top_albums_list(albums)  #suma los streams de toxas las canciones de cada album
-    for i in artists:
-        i.reproducciones_suma()
+    
     artists=artistas_completo_album(abrir_datos_users_artists(),albums) #los aritstas tienen que volver a abrirse pero con los albums ya modificados con la cantidad de reproducciones
-
+    guardar_datos(playlists,artists,listeners,albums)
     for i in artists: #suma las reproducciones de todos los albums del artista
         i.reproducciones_suma()
-    
 
     artists=top_artists_list(artists) #esto es para organizar los artistas por sus reproducciones
+    
     listeners=top_listeners_list(listeners)
     
     us=True
@@ -55,7 +54,7 @@ def estaditica_menu():
                 break
 
         if x==1:
-            top_albums=albums[slice(5)]
+            top_albums=albums[slice(5)] #hace lista con los primeros 5 elemetnos al estar estos organizados por los streams
             print("Top Albums con mas Reproducciones")
             for i in top_albums:
                 print('--',i.name,'Streams:',i.streams)

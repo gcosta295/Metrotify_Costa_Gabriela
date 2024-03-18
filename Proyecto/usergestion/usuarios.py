@@ -4,7 +4,6 @@ import re
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from usergestion.funciones_user import create_own_username, create_user_mail,create_user_name
-from Gestion_musical.funcion_crear_albun import validar_fecha,tracklist, validar_link
 from usergestion.album_class import Album
 from datetime import datetime
 
