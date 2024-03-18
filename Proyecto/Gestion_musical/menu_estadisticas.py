@@ -86,3 +86,4 @@ def estaditica_menu():
             return
         else:
             print("Esa no es una de las opciones numericas")
+            us=True
