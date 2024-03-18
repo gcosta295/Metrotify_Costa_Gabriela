@@ -9,3 +9,6 @@ Recuerde correr el codigo en el archivo main.py dentro de la carpeta Proyecto.
 Es importante que descargue la carpeta completa de METROTIFY_COSTA_GABRIELA y que sea esta la que abra en VSC o en la aplicacion que vaya a utilizar, ya que el proyecto tiene relatives paths que no funcionan si no estan en la carpeta padre que acabo de mencionar. 
 
 El codigo no tiene variables universales y realiza estadisticas con el bonus de las graficas
+
+La idea del usuario que usa el Metrotify es que tenga que poner su username para iniciar sesion, como cierta medida de "seguridad".
+Necesitas iniciar sesion para poder realizar las otras acciones y si registras un usuario luego tendras que iniciar sesion con el username que creaste.
