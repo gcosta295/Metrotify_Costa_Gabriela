@@ -6,4 +6,4 @@ Puede suceder que se ponga lento pero es por la computadora que tarda en procesa
 
 Es importante que descargue la carpeta completa de METROTIFY_COSTA_GABRIELA ya que el proyecto tiene relatives paths que no funcionan si no estan en la carpeta padre que acabo de mencionar
 
-El codigo no tiene variables universables y realice el bonus de las graficas
+El codigo no tiene variables universales y realice el bonus de las graficas
