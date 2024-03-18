@@ -138,5 +138,3 @@ def music_menu(): #esta funcion es para realizar un menu de todas las opciones d
           
 
     return user
-   
-music_menu()
