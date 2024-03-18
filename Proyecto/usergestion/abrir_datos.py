@@ -347,14 +347,4 @@ def guardar_datos(playlists,artists,listeners,albums): #esta es la funcion conju
     guardar_albums(albums)
 
  
-# artists=(artistas_completo_album(abrir_datos_users_artists(),abrir_datos_album()))
-# albums=abrir_datos_album()
 
-# listeners=abrir_datos_users_listeners()
-
-# playlists=(downloadPlaylists(abrir_playlist(),albums))
-
-# playlists=abrir_datos_playlists(albums)
-# link_playlists(playlists,listeners)
-
-# guardar_datos(playlists,artists,listeners,albums)
